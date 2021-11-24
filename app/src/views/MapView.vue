@@ -29,9 +29,18 @@ export default {
       }),
     });
 
+    let admb_dist = new TileLayer({
+      source: new TileWMS({
+        url: 'http://localhost:8080/geoserver/medscape/wms?',
+        params: {'LAYERS': 'medscape:admb_dist', 'TILED': false},
+        serverType: 'geoserver',
+        transition: 0,
+      }),
+    });
+
     let medscape_polygons = new TileLayer({
       source: new TileWMS({
-        url: 'http://localhost:8081/geoserver/medscape/wms?',
+        url: 'http://localhost:8080/geoserver/medscape/wms?',
         params: {'LAYERS': 'medscape:Cyprus_LVL2', 'TILED': true},
         serverType: 'geoserver',
         transition: 0,
@@ -41,11 +50,11 @@ export default {
     this.olmap = new Map({
       target: 'ol-map',
       layers: [
-        
         new TileLayer({
           source: new OSM(),
         }),
-          medscape_polygons,
+        medscape_polygons,
+        admb_dist
       ],
       view: new View({
         center: fromLonLat([33.3587, 35.17025]),

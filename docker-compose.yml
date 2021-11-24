@@ -1,17 +1,21 @@
-version: '3.9'
+version: '3'
 services:
-  client:
-    container_name: medscape_client
+  nginx:
     build:
-      context: ./client
-    volumes:
-      - ./client:/app
+      context: ./nginx
     ports:
-      - "8080:8080"
+      - "80:80"
+
+  app:
+    build:
+      context: ./app
+    volumes:
+      - ./app:/app
+    ports:
+      - "3000:3000"
 
   db:
     image: kartoza/postgis:${POSTGIS_VERSION_TAG}
-
     volumes:
         - geodb-data:/var/lib/postgresql
     ports:
