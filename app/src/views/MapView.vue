@@ -52,7 +52,9 @@ export default {
       layers: [
         new TileLayer({
           source: new OSM(),
-        })
+        }),
+        medscape_polygons,
+        admb_dist
       ],
       view: new View({
         center: fromLonLat([33.3587, 35.17025]),
