@@ -1,4 +1,4 @@
-version: '3'
+version: '3.8'
 services:
   app:
     build:
@@ -9,7 +9,7 @@ services:
     ports:
       - "3000:3000"
 
-  db:
+  geodb:
     image: kartoza/postgis:${POSTGIS_VERSION_TAG}
     volumes:
       - geodb-data:/var/lib/postgresql
