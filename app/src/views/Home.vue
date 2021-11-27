@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div class="p-5">Medscape Project Pilot</div>
+    <div class="p-5">Town Planning - Medscape</div>
     <map-view></map-view>
   </div>
 </template>
