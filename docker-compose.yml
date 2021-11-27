@@ -4,7 +4,7 @@ services:
     image: nginx:1.17.10
     depends_on:
       - app
-      - db
+      - geodb
       - geoserver
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf
@@ -17,10 +17,10 @@ services:
     ports:
       - 1080:80
 
-  db:
+  geodb:
     image: kartoza/postgis:${POSTGIS_VERSION_TAG}
     volumes:
-        - geodb-data:/var/lib/postgresql
+      - geodb-data:/var/lib/postgresql
     ports:
       - ${POSTGRES_PORT}:5432
     environment:
@@ -49,7 +49,7 @@ services:
       - INITIAL_MEMORY=${INITIAL_MEMORY}
       - MAXIMUM_MEMORY=${MAXIMUM_MEMORY}
     depends_on:
-      db:
+      geodb:
         condition: service_healthy
     healthcheck:
       test: curl --fail -s http://localhost:8080/ || exit 1
