@@ -19,6 +19,7 @@ export default {
     }
   },
   mounted() {
+    let geoserverUrl = process.env.VUE_APP_GEOSERVER_URL
     let usa = new TileLayer({
       extent: [-13884991, 2870341, -7455066, 6338219],
       source: new TileWMS({
@@ -31,8 +32,8 @@ export default {
 
     let admb_dist = new TileLayer({
       source: new TileWMS({
-        url: 'http://localhost:8080/geoserver/medscape/wms?',
-        params: {'LAYERS': 'medscape:admb_dist', 'TILED': false},
+        url: `${geoserverUrl}/medscape/wms?`,
+        params: {'LAYERS': 'medscape:admb_dist', 'TILED': true},
         serverType: 'geoserver',
         transition: 0,
       }),
@@ -40,7 +41,7 @@ export default {
 
     let medscape_polygons = new TileLayer({
       source: new TileWMS({
-        url: 'http://localhost:8080/geoserver/medscape/wms?',
+        url: `${geoserverUrl}/medscape/wms?`,
         params: {'LAYERS': 'medscape:Cyprus_LVL2', 'TILED': true},
         serverType: 'geoserver',
         transition: 0,
@@ -69,6 +70,6 @@ export default {
 <style>
 #ol-map {
   width: 100%;
-  height: 100vh;
+  height: calc(100vh - 70px);
 }
 </style>

@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <div class="p-5">Medscape Project</div>
     <map-view></map-view>
   </div>
 </template>
