@@ -5,6 +5,7 @@ volumes:
 
 services:
   app:
+    container_name: medscape_app
     build:
       context: ./app
     ports:
