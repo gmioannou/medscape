@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div class="p-5">Town Planning - Medscape</div>
+    <div class="p-5">Town Planning - Medscape {{ geoserverUrl }}</div>
     <map-view></map-view>
   </div>
 </template>
@@ -11,6 +11,14 @@ export default {
   name: 'Home',
   components: {
     MapView
+  },
+  data() {
+    return {
+      geoserverUrl: ''
+    }
+  },
+  mounted() {
+    this.geoserverUrl = process.env.VUE_APP_GEOSERVER_URL
   }
 }
 </script>
