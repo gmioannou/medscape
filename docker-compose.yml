@@ -1,31 +1,14 @@
 version: '3.8'
-volumes:
-   geoserver-data:
-   geodb-data:
-
 services:
   app:
-    container_name: medscape_app
+    container_name: app
     build:
       context: ./app
+    image: app
+    depends_on:
+      - geoserver
     ports:
-      - 1080:80
-
-  geodb:
-    image: kartoza/postgis:${POSTGIS_VERSION_TAG}
-    volumes:
-      - geodb-data:/var/lib/postgresql
-    ports:
-      - ${POSTGRES_PORT}:5432
-    environment:
-      - POSTGRES_DB=${POSTGRES_DB}
-      - POSTGRES_USER=${POSTGRES_USER}
-      - POSTGRES_PASS=${POSTGRES_PASS}
-      - ALLOW_IP_RANGE=${ALLOW_IP_RANGE}
-      - FORCE_SSL=FALSE
-    restart: on-failure
-    healthcheck:
-      test: "exit 0"
+      - 80:80
 
   geoserver:
     image: kartoza/geoserver:${GS_VERSION}
@@ -49,14 +32,23 @@ services:
       interval: 1m30s
       timeout: 10s
       retries: 3
-
-  nginx_proxy:
-    image: nginx:1.17.10
-    depends_on:
-      - app
-      - geodb
-      - geoserver
+      
+  geodb:
+    image: kartoza/postgis:${POSTGIS_VERSION_TAG}
     volumes:
-      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - geodb-data:/var/lib/postgresql
     ports:
-      - 80:80      
+      - ${POSTGRES_PORT}:5432
+    environment:
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASS=${POSTGRES_PASS}
+      - ALLOW_IP_RANGE=${ALLOW_IP_RANGE}
+      - FORCE_SSL=FALSE
+    restart: on-failure
+    healthcheck:
+      test: "exit 0"
+
+volumes:
+   geoserver-data:
+   geodb-data: 
