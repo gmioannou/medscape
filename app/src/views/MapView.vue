@@ -79,7 +79,7 @@ export default {
       ],
       view: new View({
         center: fromLonLat([33.3587, 35.17025]),
-        zoom: 14,
+        zoom: 8,
         maxZoom: 19,
       })
     })    
