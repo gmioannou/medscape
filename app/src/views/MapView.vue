@@ -79,7 +79,7 @@ export default {
       ],
       view: new View({
         center: fromLonLat([33.3587, 35.17025]),
-        zoom: 8,
+        zoom: 9,
         maxZoom: 19,
       })
     })    
@@ -90,6 +90,6 @@ export default {
 <style>
 #ol-map {
   width: 100%;
-  height: calc(100vh - 70px);
+  height: calc(100vh - 60px);
 }
 </style>

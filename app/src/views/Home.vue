@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div class="p-5">Town Planning - Medscape {{ geoserverUrl }}</div>
+    <div class="p-4">Town Planning - Medscape {{ geoserverUrl }}</div>
     <map-view></map-view>
   </div>
 </template>
