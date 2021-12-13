@@ -68,6 +68,15 @@ export default {
       }),
     });
 
+    let indxcas_5000_image = new ImageLayer({
+      source: new ImageWMS({
+        url: `${geoserverUrl}/medscape/wms?`,
+        params: {'LAYERS': 'medscape:indxcas_5000'},
+        ratio: 1,
+        serverType: 'geoserver',
+      }),
+    });
+
     this.olmap = new Map({
       target: 'ol-map',
       layers: [
@@ -75,7 +84,8 @@ export default {
           source: new OSM(),
         }),
         medscape_polygons_image,
-        admb_dist_image
+        admb_dist_image,
+        indxcas_5000_image
       ],
       view: new View({
         center: fromLonLat([33.3587, 35.17025]),
