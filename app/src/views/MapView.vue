@@ -71,7 +71,7 @@ export default {
     let indxcas_5000_image = new ImageLayer({
       source: new ImageWMS({
         url: `${geoserverUrl}/medscape/wms?`,
-        params: {'LAYERS': 'medscape:indxcas_5000'},
+        params: {'LAYERS': 'medscape:indxcas_cas5000'},
         ratio: 1,
         serverType: 'geoserver',
       }),
