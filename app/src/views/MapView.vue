@@ -68,10 +68,10 @@ export default {
       }),
     });
 
-    let indxcas_5000_image = new ImageLayer({
+    let indxcas_cas5000_image = new ImageLayer({
       source: new ImageWMS({
         url: `${geoserverUrl}/medscape/wms?`,
-        params: {'LAYERS': 'medscape:indxcas_cas5000'},
+        params: {'LAYERS': 'medscape:indxcas_cas5000, medscape:indxcas_cas2500'},
         ratio: 1,
         serverType: 'geoserver',
       }),
@@ -85,7 +85,7 @@ export default {
         }),
         medscape_polygons_image,
         admb_dist_image,
-        indxcas_5000_image
+        indxcas_cas5000_image
       ],
       view: new View({
         center: fromLonLat([33.3587, 35.17025]),
